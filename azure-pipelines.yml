@@ -3,8 +3,7 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-trigger:
-- main
+trigger: none
 
 pool:
   vmImage: windows-latest
@@ -17,7 +16,7 @@ stages:
     displayName: Build
     steps:
     - script: echo This is a BUILD job
-      displayName: 'Build project"
+      displayName: 'Build project'
 - stage: CD
   displayName: CD Stage
   jobs:
