@@ -9,13 +9,25 @@ trigger:
 pool:
   vmImage: windows-latest
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+stages:
+- stage : CI
+  displayName: CI Stage
+  jobs:
+  - job: build
+    displayName: Build
+    steps:
+    - script: echo This is a BUILD job
+      displayName: 'Build project"
+- stage: CD
+  displayName: CD Stage
+  jobs:
+  - deployment: deploy
+    displayName: Deploy
+    enviroment: staging
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo This is a DEPLOYMENT job
+            displayName: 'Deploy project'
+      
