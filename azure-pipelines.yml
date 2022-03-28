@@ -22,7 +22,6 @@ stages:
   jobs:
   - deployment: deploy
     displayName: Deploy
-    enviroment: staging
     strategy:
       runOnce:
         deploy:
