@@ -38,6 +38,7 @@ stages:
               WebsitePhysicalPath: '%SystemDrive%\inetpub\wwwroot'
               WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
               AddBinding: true
+              Bindings: 81
               CreateOrUpdateAppPoolForWebsite: true
               ConfigureAuthenticationForWebsite: true
               AppPoolNameForWebsite: 'DefaultAppPool'
