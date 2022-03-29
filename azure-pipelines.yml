@@ -36,5 +36,5 @@ stages:
               IISDeploymentType: 'IISWebsite'
               ActionIISWebsite: 'CreateOrUpdateWebsite'
               WebsiteName: 'demowebsiteCCPTPM'
-              WebsitePhysicalPath: '%SystemDrive%\inetpub\wwwroot'
+              WebsitePhysicalPath: '%SystemDrive%\inetpub\wwwroot\website'
               WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
