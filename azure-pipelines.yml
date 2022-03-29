@@ -32,9 +32,15 @@ stages:
             displayName: 'Deploy project'
           - task: IISWebAppManagementOnMachineGroup@0
             inputs:
-              EnableIIS: true
               IISDeploymentType: 'IISWebsite'
               ActionIISWebsite: 'CreateOrUpdateWebsite'
-              WebsiteName: 'demowebsiteCCPTPM'
               WebsitePhysicalPath: '%SystemDrive%\inetpub\wwwroot\website'
               WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
+              WebsiteName: website
+              AddBinding: true
+              CreateOrUpdateAppPoolForWebsite: true
+              ConfigureAuthenticationForWebsite: true
+              AppPoolNameForWebsite: 'demo'
+              DotNetVersionForWebsite: 'v4.0'
+              PipeLineModeForWebsite: 'Integrated'
+              AppPoolIdentityForWebsite: 'ApplicationPoolIdentity'
