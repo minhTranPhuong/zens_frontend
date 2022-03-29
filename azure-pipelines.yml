@@ -24,13 +24,14 @@ steps:
     EnableIIS: true
     IISDeploymentType: 'IISWebsite'
     ActionIISWebsite: 'CreateOrUpdateWebsite'
-    WebsiteName: 'demoweb'
+    WebsiteName: 'ccptpm'
     WebsitePhysicalPath: '%SystemDrive%\inetpub\wwwroot'
     WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
     AddBinding: true
+    Bindings: '192.168.1.17'
     CreateOrUpdateAppPoolForWebsite: true
     ConfigureAuthenticationForWebsite: true
-    AppPoolNameForWebsite: 'demo'
+    AppPoolNameForWebsite: 'ccptpm'
     DotNetVersionForWebsite: 'v4.0'
     PipeLineModeForWebsite: 'Integrated'
     AppPoolIdentityForWebsite: 'ApplicationPoolIdentity'
