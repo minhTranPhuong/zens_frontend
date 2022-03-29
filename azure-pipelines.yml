@@ -28,7 +28,7 @@ steps:
     WebsitePhysicalPath: '%SystemDrive%\inetpub\wwwroot'
     WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
     AddBinding: true
-    Bindings: 'http/192.168.1.17:81:'
+    Bindings: 'http://192.168.1.17:81:'
     CreateOrUpdateAppPoolForWebsite: true
     ConfigureAuthenticationForWebsite: true
     AppPoolNameForWebsite: 'demo'
