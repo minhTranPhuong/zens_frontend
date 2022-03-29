@@ -3,46 +3,31 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-trigger: 
+trigger:
 - main
 
 pool:
   vmImage: windows-latest
 
-stages:
-- stage : CI
-  displayName: CI Stage
-  jobs:
-  - job: build
-    displayName: Build
-    steps:
-    - script: echo This is a BUILD job
-      displayName: 'Build project'
-- stage: CD
-  displayName: CD Stage
-  jobs:
-  - deployment: deploy
-    displayName: Deploy
-    environment: demo enviroment
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - script: echo This is a DEPLOYMENT job
-            displayName: 'Deploy project'
-          - task: IISWebAppManagementOnMachineGroup@0
-            inputs:
-              EnableIIS: true
-              IISDeploymentType: 'IISWebsite'
-              ActionIISWebsite: 'CreateOrUpdateWebsite'
-              WebsiteName: 'website'
-              WebsitePhysicalPath: '%SystemDrive%\inetpub\wwwroot'
-              WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
-              AddBinding: true
-              Bindings: 81
-              CreateOrUpdateAppPoolForWebsite: true
-              ConfigureAuthenticationForWebsite: true
-              AppPoolNameForWebsite: 'demoweb'
-              DotNetVersionForWebsite: 'v4.0'
-              PipeLineModeForWebsite: 'Integrated'
-              AppPoolIdentityForWebsite: 'ApplicationPoolIdentity'
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'npm install and build'
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
