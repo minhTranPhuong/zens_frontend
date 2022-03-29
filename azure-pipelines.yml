@@ -35,3 +35,7 @@ steps:
     DotNetVersionForWebsite: 'v4.0'
     PipeLineModeForWebsite: 'Integrated'
     AppPoolIdentityForWebsite: 'ApplicationPoolIdentity'
+- task: IISWebAppDeploymentOnMachineGroup@0
+  inputs:
+    WebSiteName: 'ccptpm'
+    Package: '$(System.DefaultWorkingDirectory)\**\*.zip'
