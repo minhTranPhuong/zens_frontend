@@ -45,7 +45,3 @@ stages:
               DotNetVersionForWebsite: 'v4.0'
               PipeLineModeForWebsite: 'Integrated'
               AppPoolIdentityForWebsite: 'ApplicationPoolIdentity'
-          - task: IISWebAppDeploymentOnMachineGroup@0
-            inputs:
-              WebSiteName: 'website-demo1'
-              Package: '$(System.DefaultWorkingDirectory)\**\*.zip'
