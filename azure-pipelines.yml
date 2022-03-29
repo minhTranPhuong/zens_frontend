@@ -32,6 +32,7 @@ stages:
             displayName: 'Deploy project'
 # IIS web app manage
 # Create or update websites, web apps, virtual directories, or application pools
+steps:
 - task: IISWebAppManagementOnMachineGroup@0
   inputs:
     #enableIIS: false # Optional
