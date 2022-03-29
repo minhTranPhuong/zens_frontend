@@ -30,7 +30,21 @@ stages:
           steps:
           - script: echo This is a DEPLOYMENT job
             displayName: 'Deploy project'
+          - task: IISWebAppManagementOnMachineGroup@0
+            inputs:
+              IISDeploymentType: 'IISWebsite'
+              ActionIISWebsite: 'CreateOrUpdateWebsite'
+              WebsiteName: 'website-demo'
+              WebsitePhysicalPath: '%SystemDrive%\inetpub\wwwroot'
+              WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
+              AddBinding: true
+              CreateOrUpdateAppPoolForWebsite: true
+              ConfigureAuthenticationForWebsite: true
+              AppPoolNameForWebsite: 'DefaultAppPool'
+              DotNetVersionForWebsite: 'v4.0'
+              PipeLineModeForWebsite: 'Integrated'
+              AppPoolIdentityForWebsite: 'ApplicationPoolIdentity'
           - task: IISWebAppDeploymentOnMachineGroup@0
             inputs:
-              WebSiteName: 'website'
+              WebSiteName: 'website-demo1'
               Package: '$(System.DefaultWorkingDirectory)\**\*.zip'
