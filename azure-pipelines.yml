@@ -28,7 +28,7 @@ steps:
     WebsitePhysicalPath: '%SystemDrive%\inetpub\wwwroot'
     WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
     AddBinding: true
-    Bindings: 'localhost:3000'
+    Bindings: '81'
     CreateOrUpdateAppPoolForWebsite: true
     ConfigureAuthenticationForWebsite: true
     AppPoolNameForWebsite: 'ccptpm'
