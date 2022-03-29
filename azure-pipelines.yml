@@ -30,14 +30,11 @@ stages:
           steps:
           - script: echo This is a DEPLOYMENT job
             displayName: 'Deploy project'
-- stage: deploy
-  displayName: Deploy web
-  steps:
-    - task: IISWebAppManagementOnMachineGroup@0
-      inputs:
-        EnableIIS: true
-        IISDeploymentType: 'IISWebsite'
-        ActionIISWebsite: 'CreateOrUpdateWebsite'
-        WebsiteName: 'demowebccptpm'
-        WebsitePhysicalPath: '%SystemDrive%\inetpub\wwwroot'
-        WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'                                         
+          - task: IISWebAppManagementOnMachineGroup@0
+            inputs:
+              EnableIIS: true
+              IISDeploymentType: 'IISWebsite'
+              ActionIISWebsite: 'CreateOrUpdateWebsite'
+              WebsiteName: 'demowebsiteCCPTPM'
+              WebsitePhysicalPath: '%SystemDrive%\inetpub\wwwroot'
+              WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
