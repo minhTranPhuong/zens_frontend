@@ -19,6 +19,11 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 - task: IISWebAppManagementOnMachineGroup@0
   inputs:
     EnableIIS: true
@@ -42,3 +47,9 @@ steps:
     RemoveAdditionalFilesFlag: true
     ExcludeFilesFromAppDataFlag: true
     TakeAppOfflineFlag: true
+- task: DownloadBuildArtifacts@1
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    downloadPath: '$(System.ArtifactsDirectory)'
+    artifactName: 'drop'
