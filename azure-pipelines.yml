@@ -24,12 +24,6 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
-- task: DownloadBuildArtifacts@1
-  inputs:
-    buildType: 'current'
-    downloadType: 'single'
-    downloadPath: '$(System.ArtifactsDirectory)'
-    artifactName: 'drop'
 - task: IISWebAppManagementOnMachineGroup@0
   inputs:
     EnableIIS: true
@@ -46,6 +40,12 @@ steps:
     DotNetVersionForWebsite: 'v4.0'
     PipeLineModeForWebsite: 'Integrated'
     AppPoolIdentityForWebsite: 'ApplicationPoolIdentity'
+- task: DownloadBuildArtifacts@1
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    downloadPath: '$(System.ArtifactsDirectory)'
+    artifactName: 'drop'
 - task: IISWebAppDeploymentOnMachineGroup@0
   inputs:
     WebSiteName: 'ccptpm'
